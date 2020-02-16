@@ -38,139 +38,111 @@ console:
       brains:
         brain:
 
-            # Overrides
-            overrides:
-              allow_system_aiml: true
-              allow_learn_aiml: true
-              allow_learnf_aiml: true
+          # Overrides
+          overrides:
+            allow_system_aiml: true
+            allow_learn_aiml: true
+            allow_learnf_aiml: true
 
-            # Defaults
-            defaults:
-              default_get: unknown
-              default_property: unknown
-              default_map: unknown
-              learn-filename: botflow-learnf.aiml
+          # Defaults
+          defaults:
+            default_get: unknown
+            default_property: unknown
+            default_map: unknown
+            learn-filename: botflow-learnf.aiml
 
-            # Nodes
-            nodes:
-              pattern_nodes: $BOT_ROOT/config/pattern_nodes.conf
-              template_nodes: $BOT_ROOT/config/template_nodes.conf
+          # Nodes
+          nodes:
+            pattern_nodes: $BOT_ROOT/config/pattern_nodes.conf
+            template_nodes: $BOT_ROOT/config/template_nodes.conf
 
-            # Binary
-            binaries:
-              save_binary: false
-              load_binary: false
-              binary_filename: /tmp/botflow.brain
-              load_aiml_on_binary_fail: false
+          # Binary
+          binaries:
+            save_binary: false
+            load_binary: false
+            binary_filename: /tmp/botflow.brain
+            load_aiml_on_binary_fail: false
 
-            # Braintree
-            braintree:
-              file: /tmp/braintree.xml
-              content: xml
+          # Braintree
+          braintree:
+            file: /tmp/braintree.xml
+            content: xml
 
-            files:
-                aiml:
-                    files: $BOT_ROOT/aiml
-                    extension: .aiml
-                    directories: true
-                    errors:
-                      file: /tmp/botflow_errors.csv
-                      format: csv
-                      encoding: utf-8
-                      delete_on_start: true
-                    duplicates:
-                      file: /tmp/botflow_duplicates.csv
-                      format: csv
-                      encoding: utf-8
-                      delete_on_start: true
-                    conversation:
-                      file: /tmp/botflow-conversation.csv
-                      format: csv
-                      delete_on_start: true
-                sets:
-                    files: $BOT_ROOT/sets
-                    extension: .txt
-                    directories: false
-                maps:
-                    files: $BOT_ROOT/maps
-                    extension: .txt
-                    directories: false
-                denormal: $BOT_ROOT/config/denormal.txt
-                normal: $BOT_ROOT/config/normal.txt
-                gender: $BOT_ROOT/config/gender.txt
-                person: $BOT_ROOT/config/person.txt
-                person2: $BOT_ROOT/config/person2.txt
-                properties: $BOT_ROOT/config/properties.txt
-                rdf:
-                    files:  $BOT_ROOT/rdf
-                    extension: .txt
-                    directories: true
-                preprocessors: $BOT_ROOT/config/preprocessors.conf
-                postprocessors: $BOT_ROOT/config/postprocessors.conf
-                regex_templates: $BOT_ROOT/config/regex-templates.txt
+          files:
+            aiml:
+              files: $BOT_ROOT/aiml
+              extension: .aiml
+              directories: true
+              errors:
+                file: /tmp/botflow_errors.csv
+                format: csv
+                encoding: utf-8
+                delete_on_start: true
+              duplicates:
+                file: /tmp/botflow_duplicates.csv
+                format: csv
+                encoding: utf-8
+                delete_on_start: true
+              conversation:
+                file: /tmp/botflow-conversation.csv
+                format: csv
+                delete_on_start: true
+            sets:
+              files: $BOT_ROOT/sets
+              extension: .txt
+              directories: false
+            maps:
+              files: $BOT_ROOT/maps
+              extension: .txt
+              directories: false
+            denormal: $BOT_ROOT/config/denormal.txt
+            normal: $BOT_ROOT/config/normal.txt
+            gender: $BOT_ROOT/config/gender.txt
+            person: $BOT_ROOT/config/person.txt
+            person2: $BOT_ROOT/config/person2.txt
+            properties: $BOT_ROOT/config/properties.txt
+            rdf:
+              files:  $BOT_ROOT/rdf
+              extension: .txt
+              directories: true
+            preprocessors: $BOT_ROOT/config/preprocessors.conf
+            postprocessors: $BOT_ROOT/config/postprocessors.conf
+            regex_templates: $BOT_ROOT/config/regex-templates.txt
 
-            services:
-                REST:
-                    classname: programy.services.rest.GenericRESTService
-                    method: GET
-                    host: 0.0.0.0
-                Pannous:
-                    classname: programy.services.pannous.PannousService
-                    url: http://weannie.pannous.com/api
-                Pandora:
-                    classname: programy.services.pandora.PandoraService
-                    url: http://www.pandorabots.com/pandora/talk-xml
-                Wikipedia:
-                    classname: programy.services.wikipediaservice.WikipediaService
-                DuckDuckGo:
-                    classname: programy.services.duckduckgo.DuckDuckGoService
-                    url: http://api.duckduckgo.com
+          services:
+            REST:
+              classname: programy.services.rest.GenericRESTService
+              method: GET
+              host: 0.0.0.0
+            Pannous:
+              classname: programy.services.pannous.PannousService
+              url: http://weannie.pannous.com/api
+            Pandora:
+              classname: programy.services.pandora.PandoraService
+              url: http://www.pandorabots.com/pandora/talk-xml
+            Wikipedia:
+              classname: programy.services.wikipediaservice.WikipediaService
+            DuckDuckGo:
+              classname: programy.services.duckduckgo.DuckDuckGoService
+              url: http://api.duckduckgo.com
 
-            security:
-                authentication:
-                    classname: programy.security.authenticate.passthrough.BasicPassThroughAuthenticationService
-                    denied_srai: AUTHENTICATION_FAILED
-                authorisation:
-                    classname: programy.security.authorise.usergroupsauthorisor.BasicUserGroupAuthorisationService
-                    denied_srai: AUTHORISATION_FAILED
-                    usergroups: $BOT_ROOT/config/roles.yaml
+          security:
+            authentication:
+              classname: programy.security.authenticate.passthrough.BasicPassThroughAuthenticationService
+              denied_srai: AUTHENTICATION_FAILED
+            authorisation:
+              classname: programy.security.authorise.usergroupsauthorisor.BasicUserGroupAuthorisationService
+              denied_srai: AUTHORISATION_FAILED
+              usergroups: $BOT_ROOT/config/roles.yaml
 
-            oob:
-              default:
-                classname: programy.oob.default.DefaultOutOfBandProcessor
-              alarm:
-                classname: programy.oob.alarm.AlarmOutOfBandProcessor
-              camera:
-                classname: programy.oob.camera.CameraOutOfBandProcessor
-              clear:
-                classname: programy.oob.clear.ClearOutOfBandProcessor
-              dial:
-                classname: programy.oob.dial.DialOutOfBandProcessor
-              dialog:
-                classname: programy.oob.dialog.DialogOutOfBandProcessor
-              email:
-                classname: programy.oob.email.EmailOutOfBandProcessor
-              geomap:
-                classname: programy.oob.map.MapOutOfBandProcessor
-              schedule:
-                classname: programy.oob.schedule.ScheduleOutOfBandProcessor
-              search:
-                classname: programy.oob.search.SearchOutOfBandProcessor
-              sms:
-                classname: programy.oob.sms.SMSOutOfBandProcessor
-              url:
-                classname: programy.oob.url.URLOutOfBandProcessor
-              wifi:
-                classname: programy.oob.wifi.WifiOutOfBandProcessor
-
-            dynamic:
-                variables:
-                    gettime: programy.dynamic.variables.datetime.GetTime
-                sets:
-                    numeric: programy.dynamic.sets.numeric.IsNumeric
-                    roman:   programy.dynamic.sets.roman.IsRomanNumeral
-                maps:
-                    romantodec: programy.dynamic.maps.roman.MapRomanToDecimal
-                    dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
+          dynamic:
+            variables:
+              gettime: programy.dynamic.variables.datetime.GetTime
+            sets:
+              numeric: programy.dynamic.sets.numeric.IsNumeric
+              roman:   programy.dynamic.sets.roman.IsRomanNumeral
+            maps:
+              romantodec: programy.dynamic.maps.roman.MapRomanToDecimal
+              dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
 
 
